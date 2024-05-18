@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Test!!"
 date:   2024-05-18 22:28:05 +0900
-categories: test test1 test2
+categories: Blogging Test
 ---
 Test 입니다
 
