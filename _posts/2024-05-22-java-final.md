@@ -8,6 +8,10 @@ render_with_liquid: false
 pin: true
 ---
 
+![final-keyword-in-java](https://github.com/JeonDaehong/scenario-gpt-project/assets/90895144/af7a60af-738e-47a5-a35f-2989004dbc08)
+
+<br>
+
 Java에서 **final** 키워드는 상수 선언, 상속 방지, 불변성을 보장하기 위해 사용됩니다.
 
 이로 인하여, **개발자들의 의도치 않은 코드 변경을 막을 수 있으며**, 바뀌지 않는 값이 들어온다는 것을 명시적으로 알려줄 수 있기에 **가독성**에도 좋습니다.
