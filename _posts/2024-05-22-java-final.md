@@ -3,7 +3,7 @@ title: Java Final Keyword
 author: cotes
 date: 2024-05-22 20:55:00 +0800
 categories: [Personal IT Study, Java]
-tags: [Java, Study, final]
+tags: [Java, Study, Final]
 render_with_liquid: false
 pin: true
 ---
@@ -14,6 +14,8 @@ Java에서 **final** 키워드는 상수 선언, 상속 방지, 불변성을 보
 
 Java 에서 Final 은 **변수, 메서드, 클래스**에 모두 사용 할 수 있습니다.
 
+<br>
+
 ## Final 변수
 
  - final로 선언된 변수는 초기화된 후 **값을 변경할 수 없습니다.** 변수는 선언 시 또는 생성자에서 초기화되어야 합니다.
@@ -23,6 +25,8 @@ Java 에서 Final 은 **변수, 메서드, 클래스**에 모두 사용 할 수 
  ```java
  final int MAX_VALUE = 100;
  ```
+
+<br>
  
 ## Final Method
 
@@ -35,6 +39,8 @@ Java 에서 Final 은 **변수, 메서드, 클래스**에 모두 사용 할 수 
     // 메서드 구현
  }
  ```
+
+<br>
 
 ## Final Class
 
