@@ -1,6 +1,6 @@
 ---
 title: Java Final Keyword
-author: cotes
+author: daehong
 date: 2024-05-22 20:55:00 +0800
 categories: [Personal IT Study, Java]
 tags: [Java, Study, Final]
@@ -8,7 +8,8 @@ render_with_liquid: false
 pin: true
 image:
   path: /assets/img/test.jpg
-  alt: test
+  lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
+  alt: What is a final keyword in Java?
 ---
 
 Java에서 **final** 키워드는 상수 선언, 상속 방지, 불변성을 보장하기 위해 사용됩니다.
