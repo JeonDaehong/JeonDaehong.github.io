@@ -7,7 +7,12 @@
 # -------------------------------------
 
 cotes:
-  name: JeonDaehong
+  name: Cotes Chung
+  twitter: cotes2020
+  url: https://github.com/cotes2020/
+  
+daehong:
+  name: Jeon Daehong
   url: https://github.com/JeonDaehong
 
 sille_bille:
