@@ -6,4 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: wagoid/commitlint-github-action@v6
+      - name: Lint Commit Messages
+        uses: wagoid/commitlint-github-action@v6
+        with:
+          configFile: './commitlint.config.js'
+          failOnWarnings: false
+          failOnErrors: true
+          helpURL: 'https://github.com/conventional-changelog/commitlint/#what-is-commitlint'
