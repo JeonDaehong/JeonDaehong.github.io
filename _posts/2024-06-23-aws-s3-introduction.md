@@ -1,8 +1,8 @@
 ---
-title: Java Final Keyword
+title: AWS S3 Introduction
 author: daehong
 date: 2024-06-23 23:23:00 +0800
-categories: [Group Study, Certification, AWS]
+categories: [Group Study, AWS-Associate-Developer]
 tags: [AWS, Study, AWS S3, Amazon Web Services, Simple Storage Service, AWS Certified Developer, Associate, DVA-C02]
 render_with_liquid: false
 pin: true
