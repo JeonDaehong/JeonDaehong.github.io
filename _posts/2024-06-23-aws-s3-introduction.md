@@ -116,49 +116,49 @@ image:
 		
 - **Object 에 대하여 좀 더 자세하게 !**
     
-	- S3 Object에는 Key, Value, Version ID, Metadata, CORS(Cross Origin Resource Sharing)와 같은 다양한 구성요소가 존재한다.
+	- **S3 Object에는 Key, Value, Version ID, Metadata, CORS(Cross Origin Resource Sharing)와 같은 다양한 구성요소가 존재한다.**
     
-	- **Key : 전체 경로**
-        
-		- 버킷 내 객체의 고유한 식별자. 버킷 내 모든 객체는 정확히 하나의 키를 갖는다.
-        
-		- 버킷, 키 및 버전 ID의 조합은 각 객체를 고유하게 식별한다.
-        
-		- ex ) s3://my-bucket/my_folder1/another_folder/my_file.txt
-        
-		- Key 는 접두사 객체 이름으로 구성되어 있음.
-           
-		   - s3://my-bucket/my_folder1/another_folder**/**my_file.txt
-                
-				- `접두사 ( prefix )` : my_folder1/another_folder/
-                
-				- `객체 이름` : my_file.txt
-				
-    - **Value : 파일의 데이터**
-      
-	   - S3은 Key - Value 형태로 저장되지만, Key의 접두어 및 슬래시를 이용하여 폴더 개념 같이 사용 가능하다
-       
-	   - 폴더 경로를 조회해보면 \Documents\img\test.png 이렇게 되어있는데, 이와 같이 url로 구성 되어진다.
-   
-    - **Version Id : 파일의 버전 아이디**
-        
-		- Version ID는 S3의 고유 특징 중 하나 이다.
+		- **1. Key : 전체 경로**
+			
+			- 버킷 내 객체의 고유한 식별자. 버킷 내 모든 객체는 정확히 하나의 키를 갖는다.
+			
+			- 버킷, 키 및 버전 ID의 조합은 각 객체를 고유하게 식별한다.
+			
+			- ex ) s3://my-bucket/my_folder1/another_folder/my_file.txt
+			
+			- Key 는 접두사 객체 이름으로 구성되어 있음.
+			   
+			   - s3://my-bucket/my_folder1/another_folder**/**my_file.txt
+					
+					- `접두사 ( prefix )` : my_folder1/another_folder/
+					
+					- `객체 이름` : my_file.txt
+					
+		- **2. Value : 파일의 데이터**
+		  
+		   - S3은 Key - Value 형태로 저장되지만, Key의 접두어 및 슬래시를 이용하여 폴더 개념 같이 사용 가능하다
+		   
+		   - 폴더 경로를 조회해보면 \Documents\img\test.png 이렇게 되어있는데, 이와 같이 url로 구성 되어진다.
+	   
+		- **3. Version Id : 파일의 버전 아이디**
+			
+			- Version ID는 S3의 고유 특징 중 하나 이다.
+			
+			- 같은 파일이지만 다른 버전으로 올릴 수 있게 돕는 인식표 라고 보면 된다. 만약 이전 버전으로 돌아가고 싶다면, Version ID를 통해 쉽게 복원시킬 수 있다.
 		
-		- 같은 파일이지만 다른 버전으로 올릴 수 있게 돕는 인식표 라고 보면 된다. 만약 이전 버전으로 돌아가고 싶다면, Version ID를 통해 쉽게 복원시킬 수 있다.
-    
-	- **MetaData : 파일의 정보를 담은 데이터**
-	
-        - 최종 수정일
+		- **4. MetaData : 파일의 정보를 담은 데이터**
 		
-		- 파일 타입
+			- 최종 수정일
+			
+			- 파일 타입
+			
+			- 파일 소유자
+			
+			- 사이즈 ..등
+			
+		- **5. ACL : 파일의 권한을 담은 데이터 (접근이나 수정)**
 		
-		- 파일 소유자
-		
-		- 사이즈 ..등
-		
-    - **ACL : 파일의 권한을 담은 데이터 (접근이나 수정)**
-	
-    - **CORS(Cross Origin Resource Sharing) : 한 버켓의 파일을 지역을 무시하고 다른 버켓에서 접근 가능하게 해주는 기능**
+		- **6. CORS(Cross Origin Resource Sharing) : 한 버켓의 파일을 지역을 무시하고 다른 버켓에서 접근 가능하게 해주는 기능**
 	
     - **Object 특징**
         
@@ -178,15 +178,15 @@ image:
                 
 				- 즉, 5TB 를 업로드 하려면, 5GB 1,000개의 부품을 multi-part upload 해야 함.
                 
-				- multi-part upload 는 대용량 파일을 여러 부분으로 나누어 병렬로 업로드 하는 방식이며, 아래 3가지 단계를 거친다.
+				- **multi-part upload** 는 대용량 파일을 여러 부분으로 나누어 병렬로 업로드 하는 방식이며, 아래 3가지 단계를 거친다.
                     
-					- **업로드 초기화**
+					- **1) 업로드 초기화**
                         
 						- 이 단계에서 S3 는 고유한 업로드 ID를 반환.
 						
 						- 이 ID 는 이후 모든 파트 업로드 요청에서 사용 됨.
                     
-					- **파트 업로드**
+					- **2) 파트 업로드**
                         
 						- 파일을 여러 부분으로 나누어 각 부분을 개별적으로 업로드.
                         
@@ -194,6 +194,6 @@ image:
                         
 						- 각 파트 업로드가 완료되면, S3는 ETag 값을 반환한다. 이 ETag 값은 업로드 완료 단계에서 필요하다.
                     
-					- **업로드 완료**
+					- **3) 업로드 완료**
                         
 						- 모든 파트가 업로드 된 후, 업로드 완료 요청을 보냄.
