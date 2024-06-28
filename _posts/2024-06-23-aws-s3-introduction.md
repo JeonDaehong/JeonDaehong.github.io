@@ -67,3 +67,133 @@ image:
 - 이미 `수천 대 이상의 고성능 웹 서버로 구성`되어 있기 때문에 Auto Scaling 이나, Load Balancing 에 신경 쓰지 않아도 된다.
 
 - 웹 하드 서비스와 비슷하지만, 별도의 클라이언트 설치 없이 HTTP 프로토콜로 파일을 업로드하고 다운로드 할 수 있다.
+
+<br>
+
+### S3 Bucket 과 Object
+
+- `Bucket` 은 Object 를 저장하고 관리하는 역할을 하며, `Object` 는 데이터와 메타 데이터를 구성하고 있는 저장 단위를 의미한다.
+
+- 즉, S3 에 저장되는 모든 파일이나 데이터를 Object 라고 하면 되고, Bucket 은 그걸 저장하는 최상단 Directory 라고 생각하면 된다. ( 실제로 Directory 개념은 없음. )
+
+- daehong-bucket 이라는 Bucket 에, testFile.png 라는 Object 를 저장한다고 가정하면, [`http://daehong-bucket.s3.amazonaws.com/testFile.ong`](http://daehong-bucket.s3.amazonaws.com/testFile.ong) 라는 URL 이 생성되게 된다. 이 URL 을 통해 이미지를 확인 할 수 있고, Application Service 와 연동한다면, 해당 파일을 다운로드 하는데에 사용 할 수 있다.
+
+- **Bucket 에 대하여 좀 더 자세하게 !**
+
+    - Amazon S3에서 생성되는 최상위의 디렉토리이며, Amazon S3에 저장된 객체의 컨테이너 이다.
+    
+	- S3상의 모든 객체는 버킷에 포함된다.
+    
+	- 버킷의 이름은 S3에서 유일해야 한다.  즉, 전세계에 어디에도 중복된 이름이 존재 할 수 가 없다.
+    
+	- S3는 전역 서비스처럼 보이지만 버킷은 사실상 리전에서 생성된다.
+    
+	- 한 계정 당 최대 100개의 버킷 사용 가능.
+    
+	- 버킷 주소는 [https://bucketname.s3.Region.amazonaws.com](https://bucketname.s3.region.amazonaws.com/) 형태로 이루어진다.
+    
+	- 버킷을 생성하면 default로 private상태이다.
+    
+	- 버킷 소유권은 이전할 수 없다.
+    
+	- 버킷 안에 다른 버킷을 둘 수 없다.
+    
+	- **명명 규칙**
+    
+		- 대문자 및 _ 사용 불가능
+        
+		- 길이는 3 ~ 63자
+        
+		- IP 주소 사용 불가능
+        
+		- 소문자 또는 숫자로 시작해야 함.
+        
+		- 이름을 xn-- 로 시작 불가능
+        
+		- 이름의 끝을 -s3alias 로 끝낼 수 없음.
+        
+		- 소문자, 숫자, - 만 사용 가능
+		
+- **Object 에 대하여 좀 더 자세하게 !**
+    
+	- S3 Object에는 Key, Value, Version ID, Metadata, CORS(Cross Origin Resource Sharing)와 같은 다양한 구성요소가 존재한다.
+    
+	- **Key : 전체 경로**
+        
+		- 버킷 내 객체의 고유한 식별자. 버킷 내 모든 객체는 정확히 하나의 키를 갖는다.
+        
+		- 버킷, 키 및 버전 ID의 조합은 각 객체를 고유하게 식별한다.
+        
+		- ex ) s3://my-bucket/my_folder1/another_folder/my_file.txt
+        
+		- Key 는 접두사 객체 이름으로 구성되어 있음.
+           
+		   - s3://my-bucket/my_folder1/another_folder**/**my_file.txt
+                
+				- `접두사 ( prefix )` : my_folder1/another_folder/
+                
+				- `객체 이름` : my_file.txt
+				
+    - **Value : 파일의 데이터**
+      
+	   - S3은 Key - Value 형태로 저장되지만, Key의 접두어 및 슬래시를 이용하여 폴더 개념 같이 사용 가능하다
+       
+	   - 폴더 경로를 조회해보면 \Documents\img\test.png 이렇게 되어있는데, 이와 같이 url로 구성 되어진다.
+   
+    - **Version Id : 파일의 버전 아이디**
+        
+		- Version ID는 S3의 고유 특징 중 하나 이다.
+		
+		- 같은 파일이지만 다른 버전으로 올릴 수 있게 돕는 인식표 라고 보면 된다. 만약 이전 버전으로 돌아가고 싶다면, Version ID를 통해 쉽게 복원시킬 수 있다.
+    
+	- **MetaData : 파일의 정보를 담은 데이터**
+	
+        - 최종 수정일
+		
+		- 파일 타입
+		
+		- 파일 소유자
+		
+		- 사이즈 ..등
+		
+    - **ACL : 파일의 권한을 담은 데이터 (접근이나 수정)**
+	
+    - **CORS(Cross Origin Resource Sharing) : 한 버켓의 파일을 지역을 무시하고 다른 버켓에서 접근 가능하게 해주는 기능**
+	
+    - **Object 특징**
+        
+		- 객체마다 각각의 접근 권한 설정 가능
+        
+		- 객체 metadata는 객체가 업로드 된 후에는 수정될 수 없고, 복사해서 수정해야 한다.
+        
+		- 객체의 metadata는 response header에 반환된다.
+        
+		- **객체의 용량 및 크기**
+           
+			- Amazon S3에 저장할 수 있는 데이터의 전체 볼륨과 객체 수에는 제한이 없으나, 각 객체별로 0 byte 에서 최대 5TB 까지로 크기는 제한 됨.
+            
+			- 단일 Put 요청으로 업로드 가능한 객체의 최대 크기는 5GB 임.
+            
+			- 그러나 객체의 크기가 100MB 를 넘는 경우 `multi-part upload` 를 사용하는 것을 권장하며, 5GB 가 넘으면 어쩔 수 없이 multi-part upload 를 해야 함.
+                
+				- 즉, 5TB 를 업로드 하려면, 5GB 1,000개의 부품을 multi-part upload 해야 함.
+                
+				- multi-part upload 는 대용량 파일을 여러 부분으로 나누어 병렬로 업로드 하는 방식이며, 아래 3가지 단계를 거친다.
+                    
+					- **업로드 초기화**
+                        
+						- 이 단계에서 S3 는 고유한 업로드 ID를 반환.
+						
+						- 이 ID 는 이후 모든 파트 업로드 요청에서 사용 됨.
+                    
+					- **파트 업로드**
+                        
+						- 파일을 여러 부분으로 나누어 각 부분을 개별적으로 업로드.
+                        
+						- 각 파트는 5MB 이상이어야 하며, 마지막 파트는 예외.
+                        
+						- 각 파트 업로드가 완료되면, S3는 ETag 값을 반환한다. 이 ETag 값은 업로드 완료 단계에서 필요하다.
+                    
+					- **업로드 완료**
+                        
+						- 모든 파트가 업로드 된 후, 업로드 완료 요청을 보냄.
