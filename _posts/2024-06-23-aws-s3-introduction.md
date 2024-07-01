@@ -26,6 +26,8 @@ image:
 
 - `탄성적인( Elastic ) 성질`이 있기 때문에, 별도의 Storage 확장, 축소에 대해 서비스 사용자가 신경을 쓰지 않아도 되는 특징이 있다.
 
+![image](https://github.com/JeonDaehong/JeonDaehong/assets/90895144/da4c573c-be96-4755-8b22-baf602626d3c)
+
 <br>
 
 ### Amazon S3 Use Case
