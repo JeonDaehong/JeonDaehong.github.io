@@ -12,8 +12,8 @@ image:
   alt: What is AWS S3?
 ---
 
-### Amazon S3란 ?
-
+### ✅ Amazon S3란 ?
+---
 - Amazon 에서 제공하는 저장 서비스이며, S3 는 `Simple Storage Service` 의 줄임 말이다.
 
 - 업계 최고의 확장성과 데이터 가용성 및 보안과 성능을 제공하는 `온라인 오브젝트(객쳬) 스토리지 서비스`이다.
@@ -30,8 +30,8 @@ image:
 
 <br>
 
-### Amazon S3 Use Case
-
+### ✅ Amazon S3 Use Case
+---
 - FTP 서버처럼 단순한 파일 저장 영역으로 사용하기 위함.
 
 - 다른 AWS 서비스의 사용 로그 저장 ( 기록 보관 )
@@ -56,8 +56,8 @@ image:
 	
 <br>
 	
-### Amazon S3 특징
-
+### ✅ Amazon S3 특징
+---
 - S3는 `객체로 된 파일을 다루는 저장소`이며, EBS 의 반대라고 할 수 있다.
 
 - 이미지, 동영상, 파일 등을 저장 할 수만 있지 `구동은 할 수 없다.`
@@ -72,8 +72,8 @@ image:
 
 <br>
 
-### S3 Bucket 과 Object
-
+### ✅ S3 Bucket 과 Object
+---
 - `Bucket` 은 Object 를 저장하고 관리하는 역할을 하며, `Object` 는 데이터와 메타 데이터를 구성하고 있는 저장 단위를 의미한다.
 
 - 즉, S3 에 저장되는 모든 파일이나 데이터를 Object 라고 하면 되고, Bucket 은 그걸 저장하는 최상단 Directory 라고 생각하면 된다. ( 실제로 Directory 개념은 없음. )
@@ -116,7 +116,7 @@ image:
         
 		- 소문자, 숫자, - 만 사용 가능
 		
-- **Object 에 대하여 좀 더 자세하게 !**
+- **Object 에 대하여 좀 더 자세하게**
     
 	- **S3 Object에는 Key, Value, Version ID, Metadata, CORS(Cross Origin Resource Sharing)와 같은 다양한 구성요소가 존재한다.**
     
@@ -202,8 +202,8 @@ image:
 						
 <br>
 
-### S3 Bucket 보안 / 권한 ( 접근 제어 )
-
+### ✅ S3 Bucket 보안 / 권한 ( 접근 제어 )
+---
 - S3 는 전세계에서 접속 할 수 있는 Storage Service 이기 때문에, 기본적으로는 `private`으로 설정이 되어있다.
 
 - 그렇기 때문에, 외부에서 접속하여 S3 Bucket을 제어할 필요가 있다면, Bucket을 통째로 public  으로 바꾸는 것이 아니라, `권한 제어를 통해 접근 제어를 설정`해주어야 한다.
@@ -224,40 +224,40 @@ image:
 		
 		![image](https://github.com/JeonDaehong/scenario-gpt-project/assets/90895144/b13f51b9-db0f-48fe-81e1-6acf1d2a35d0)
 		
-			- **JSON based policies**
+		- **JSON based policies**
+		
+			- `Resources`: 버킷과 객체
 			
-				- `Resources`: 버킷과 객체
-				
-				- `Effect`: Allow / Deny
-				
-				- `Actions`: 허용하거나 거부할 수 있는 API 집합
-				
-				- `Principal`: 정책을 적용할 계정 또는 사용자
-				
-			- **S3 버킷 정책을 사용하여 다음을 수행할 수 있다.**
+			- `Effect`: Allow / Deny
 			
-				- 버킷에 대한 공개 액세스 부여
-				
-				- 객체를 업로드할 때 암호화 강제화
-				
-				- 다른 계정에 액세스 권한 부여 (Cross Account)
-				
-			- **Bucket settings for Block Public Access**
+			- `Actions`: 허용하거나 거부할 수 있는 API 집합
 			
-				- 기업 데이터 유출을 방지하기 위한 `추가 보안 계층`
+			- `Principal`: 정책을 적용할 계정 또는 사용자
+			
+		- **S3 버킷 정책을 사용하여 다음을 수행할 수 있다.**
+		
+			- 버킷에 대한 공개 액세스 부여
+			
+			- 객체를 업로드할 때 암호화 강제화
+			
+			- 다른 계정에 액세스 권한 부여 (Cross Account)
+			
+		- **Bucket settings for Block Public Access**
+		
+			- 기업 데이터 유출을 방지하기 위한 `추가 보안 계층`
+			
+			- 버킷이 절대로 공개하면 안 되는 경우, 이 설정을 그대로 두면 됨
+			
+			- S3 버킷 정책을 설정하여 공개로 만들더라도 이 설정이 활성화되어 있다면 버킷은 절대 공개되지 않음
+			
+			- `계정 수준에서 설정 가능`
+			
+			- **주요 설정에는 4가지가 있음.**
+			
+				- 새로운 ACL(Access Control List)에 대한 공공 접근 차단
 				
-				- 버킷이 절대로 공개하면 안 되는 경우, 이 설정을 그대로 두면 됨
+				- 기존 ACL에 대한 공공 접근 차단
 				
-				- S3 버킷 정책을 설정하여 공개로 만들더라도 이 설정이 활성화되어 있다면 버킷은 절대 공개되지 않음
+				- 새로운 공공 버킷 정책 차단
 				
-				- `계정 수준에서 설정 가능`
-				
-				- **주요 설정에는 4가지가 있음.**
-				
-					- 새로운 ACL(Access Control List)에 대한 공공 접근 차단
-					
-					- 기존 ACL에 대한 공공 접근 차단
-					
-					- 새로운 공공 버킷 정책 차단
-					
-					- 기존 공공 버킷 정책 차단
+				- 기존 공공 버킷 정책 차단
