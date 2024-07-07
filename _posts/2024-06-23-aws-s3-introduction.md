@@ -221,3 +221,43 @@ image:
     - **버킷 정책(Bocket policy)**
       
 		- 단일 S3 버킷 내 모든 객체에 대한 권한을 세부적으로 구성하는 정책
+		
+		![image](https://github.com/JeonDaehong/scenario-gpt-project/assets/90895144/b13f51b9-db0f-48fe-81e1-6acf1d2a35d0)
+		
+			- **JSON based policies**
+			
+				- `Resources`: 버킷과 객체
+				
+				- `Effect`: Allow / Deny
+				
+				- `Actions`: 허용하거나 거부할 수 있는 API 집합
+				
+				- `Principal`: 정책을 적용할 계정 또는 사용자
+				
+			- **S3 버킷 정책을 사용하여 다음을 수행할 수 있다.**
+			
+				- 버킷에 대한 공개 액세스 부여
+				
+				- 객체를 업로드할 때 암호화 강제화
+				
+				- 다른 계정에 액세스 권한 부여 (Cross Account)
+				
+			- **Bucket settings for Block Public Access**
+			
+				- 기업 데이터 유출을 방지하기 위한 `추가 보안 계층`
+				
+				- 버킷이 절대로 공개하면 안 되는 경우, 이 설정을 그대로 두면 됨
+				
+				- S3 버킷 정책을 설정하여 공개로 만들더라도 이 설정이 활성화되어 있다면 버킷은 절대 공개되지 않음
+				
+				- `계정 수준에서 설정 가능`
+				
+				- **주요 설정에는 4가지가 있음.**
+				
+					- 새로운 ACL(Access Control List)에 대한 공공 접근 차단
+					
+					- 기존 ACL에 대한 공공 접근 차단
+					
+					- 새로운 공공 버킷 정책 차단
+					
+					- 기존 공공 버킷 정책 차단
