@@ -222,42 +222,60 @@ image:
       
 		- 단일 S3 버킷 내 모든 객체에 대한 권한을 세부적으로 구성하는 정책
 		
-		![image](https://github.com/JeonDaehong/scenario-gpt-project/assets/90895144/b13f51b9-db0f-48fe-81e1-6acf1d2a35d0)
+			![image](https://github.com/JeonDaehong/scenario-gpt-project/assets/90895144/b13f51b9-db0f-48fe-81e1-6acf1d2a35d0)
 		
-		- **JSON based policies**
-		
-			- `Resources`: 버킷과 객체
+			- **JSON based policies**
 			
-			- `Effect`: Allow / Deny
-			
-			- `Actions`: 허용하거나 거부할 수 있는 API 집합
-			
-			- `Principal`: 정책을 적용할 계정 또는 사용자
-			
-		- **S3 버킷 정책을 사용하여 다음을 수행할 수 있다.**
-		
-			- 버킷에 대한 공개 액세스 부여
-			
-			- 객체를 업로드할 때 암호화 강제화
-			
-			- 다른 계정에 액세스 권한 부여 (Cross Account)
-			
-		- **Bucket settings for Block Public Access**
-		
-			- 기업 데이터 유출을 방지하기 위한 `추가 보안 계층`
-			
-			- 버킷이 절대로 공개하면 안 되는 경우, 이 설정을 그대로 두면 됨
-			
-			- S3 버킷 정책을 설정하여 공개로 만들더라도 이 설정이 활성화되어 있다면 버킷은 절대 공개되지 않음
-			
-			- `계정 수준에서 설정 가능`
-			
-			- **주요 설정에는 4가지가 있음.**
-			
-				- 새로운 ACL(Access Control List)에 대한 공공 접근 차단
+				- `Resources`: 버킷과 객체
 				
-				- 기존 ACL에 대한 공공 접근 차단
+				- `Effect`: Allow / Deny
 				
-				- 새로운 공공 버킷 정책 차단
+				- `Actions`: 허용하거나 거부할 수 있는 API 집합
 				
-				- 기존 공공 버킷 정책 차단
+				- `Principal`: 정책을 적용할 계정 또는 사용자
+				
+			- **S3 버킷 정책을 사용하여 다음을 수행할 수 있다.**
+			
+				- 버킷에 대한 공개 액세스 부여
+				
+				- 객체를 업로드할 때 암호화 강제화
+				
+				- 다른 계정에 액세스 권한 부여 (Cross Account)
+				
+			- **Bucket settings for Block Public Access**
+			
+				- 기업 데이터 유출을 방지하기 위한 `추가 보안 계층`
+				
+				- 버킷이 절대로 공개하면 안 되는 경우, 이 설정을 그대로 두면 됨
+				
+				- S3 버킷 정책을 설정하여 공개로 만들더라도 이 설정이 활성화되어 있다면 버킷은 절대 공개되지 않음
+				
+				- `계정 수준에서 설정 가능`
+				
+				- **주요 설정에는 4가지가 있음.**
+				
+					- 새로운 ACL(Access Control List)에 대한 공공 접근 차단
+					
+					- 기존 ACL에 대한 공공 접근 차단
+					
+					- 새로운 공공 버킷 정책 차단
+					
+					- 기존 공공 버킷 정책 차단
+					
+			- **쿼리 문자열 인증(Pre-signed URL)**
+			
+				- 임시 URL을 사용하여 다른 사용자에게 기간 제한(임시 권한) 액세스를 부여
+				
+				![image](https://github.com/JeonDaehong/scenario-gpt-project/assets/90895144/acae098a-ba55-4840-a2d8-6379368a8576)
+				
+		- **그 외**
+		
+			- **Encryption**
+			
+				- 암호화 키를 이용하여 객체를 암호화.
+				
+		- **또한, IAM Principal 이 S3 객체에 Access 하려면,**
+			
+			- IAM User 권한이 `Allow`이거나, Resource 정책이 `Allow`상태여야 하고,
+			
+			- 명시적인 `Deny`가 없어야 함.
