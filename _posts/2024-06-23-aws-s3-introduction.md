@@ -80,7 +80,7 @@ image:
 
 - daehong-bucket 이라는 Bucket 에, testFile.png 라는 Object 를 저장한다고 가정하면, [`http://daehong-bucket.s3.amazonaws.com/testFile.ong`](http://daehong-bucket.s3.amazonaws.com/testFile.ong) 라는 URL 이 생성되게 된다. 이 URL 을 통해 이미지를 확인 할 수 있고, Application Service 와 연동한다면, 해당 파일을 다운로드 하는데에 사용 할 수 있다.
 
-- **Bucket 에 대하여 좀 더 자세하게 !**
+- **Bucket**
 
     - Amazon S3에서 생성되는 최상위의 디렉토리이며, Amazon S3에 저장된 객체의 컨테이너 이다.
     
@@ -116,9 +116,9 @@ image:
         
 		- 소문자, 숫자, - 만 사용 가능
 		
-- **Object 에 대하여 좀 더 자세하게**
+- **Object**
     
-	- **S3 Object에는 Key, Value, Version ID, Metadata, CORS(Cross Origin Resource Sharing)와 같은 다양한 구성요소가 존재한다.**
+	- S3 Object에는 `Key, Value, Version ID, Metadata, CORS(Cross Origin Resource Sharing)`와 같은 다양한 구성요소가 존재한다.
     
 		- **1. Key : 전체 경로**
 			
@@ -162,43 +162,43 @@ image:
 		
 		- **6. CORS(Cross Origin Resource Sharing) : 한 버켓의 파일을 지역을 무시하고 다른 버켓에서 접근 가능하게 해주는 기능**
 	
-    - **Object 특징**
-        
-		- 객체마다 각각의 접근 권한 설정 가능
-        
-		- 객체 metadata는 객체가 업로드 된 후에는 수정될 수 없고, 복사해서 수정해야 한다.
-        
-		- 객체의 metadata는 response header에 반환된다.
-        
-		- **객체의 용량 및 크기**
-           
-			- Amazon S3에 저장할 수 있는 데이터의 전체 볼륨과 객체 수에는 제한이 없으나, 각 객체별로 0 byte 에서 최대 5TB 까지로 크기는 제한 됨.
-            
-			- 단일 Put 요청으로 업로드 가능한 객체의 최대 크기는 5GB 임.
-            
-			- 그러나 객체의 크기가 100MB 를 넘는 경우 `multi-part upload` 를 사용하는 것을 권장하며, 5GB 가 넘으면 어쩔 수 없이 multi-part upload 를 해야 함.
-                
-				- 즉, 5TB 를 업로드 하려면, 5GB 1,000개의 부품을 multi-part upload 해야 함.
-                
-				- **multi-part upload** 는 대용량 파일을 여러 부분으로 나누어 병렬로 업로드 하는 방식이며, 아래 3가지 단계를 거친다.
-                    
-					- **1) 업로드 초기화**
-                        
-						- 이 단계에서 S3 는 고유한 업로드 ID를 반환.
+		- `**Object 특징**`
+			
+			- 객체마다 각각의 접근 권한 설정 가능
+			
+			- 객체 metadata는 객체가 업로드 된 후에는 수정될 수 없고, 복사해서 수정해야 한다.
+			
+			- 객체의 metadata는 response header에 반환된다.
+			
+			- **객체의 용량 및 크기**
+			   
+				- Amazon S3에 저장할 수 있는 데이터의 전체 볼륨과 객체 수에는 제한이 없으나, 각 객체별로 0 byte 에서 최대 5TB 까지로 크기는 제한 됨.
+				
+				- 단일 Put 요청으로 업로드 가능한 객체의 최대 크기는 5GB 임.
+				
+				- 그러나 객체의 크기가 100MB 를 넘는 경우 `multi-part upload` 를 사용하는 것을 권장하며, 5GB 가 넘으면 어쩔 수 없이 multi-part upload 를 해야 함.
+					
+					- 즉, 5TB 를 업로드 하려면, 5GB 1,000개의 부품을 multi-part upload 해야 함.
+					
+					- **multi-part upload** 는 대용량 파일을 여러 부분으로 나누어 병렬로 업로드 하는 방식이며, 아래 3가지 단계를 거친다.
 						
-						- 이 ID 는 이후 모든 파트 업로드 요청에서 사용 됨.
-                    
-					- **2) 파트 업로드**
-                        
-						- 파일을 여러 부분으로 나누어 각 부분을 개별적으로 업로드.
-                        
-						- 각 파트는 5MB 이상이어야 하며, 마지막 파트는 예외.
-                        
-						- 각 파트 업로드가 완료되면, S3는 ETag 값을 반환한다. 이 ETag 값은 업로드 완료 단계에서 필요하다.
-                    
-					- **3) 업로드 완료**
-                        
-						- 모든 파트가 업로드 된 후, 업로드 완료 요청을 보냄.
+						- **1) 업로드 초기화**
+							
+							- 이 단계에서 S3 는 고유한 업로드 ID를 반환.
+							
+							- 이 ID 는 이후 모든 파트 업로드 요청에서 사용 됨.
+						
+						- **2) 파트 업로드**
+							
+							- 파일을 여러 부분으로 나누어 각 부분을 개별적으로 업로드.
+							
+							- 각 파트는 5MB 이상이어야 하며, 마지막 파트는 예외.
+							
+							- 각 파트 업로드가 완료되면, S3는 ETag 값을 반환한다. 이 ETag 값은 업로드 완료 단계에서 필요하다.
+						
+						- **3) 업로드 완료**
+							
+							- 모든 파트가 업로드 된 후, 업로드 완료 요청을 보냄.
 						
 <br>
 
