@@ -284,7 +284,7 @@ image:
 
 ### ✅ S3 Versioning
 
-	![image](https://github.com/JeonDaehong/study-extjs/assets/90895144/6c961514-f65a-47f6-885a-5b6d8b60bfbf)
+![image](https://github.com/JeonDaehong/study-extjs/assets/90895144/6c961514-f65a-47f6-885a-5b6d8b60bfbf)
 	
 	- 파일을 실수로 삭제하고 저장을 해버렸을 경우, S3는 이를 위해 자동화된 백업 관리 기법인 `버전 관리 및 생명주기 관리 기법`을 제공한다.
     
