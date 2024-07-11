@@ -318,7 +318,7 @@ image:
 	
 <br>
 
-### S3 Replication
+### ✅ S3 Replication
 ---
 
 - S3 안의 데이터에 대한 백업이나 동기화가 필요한 순간이 있다. 이 때, S3 Replication과 S3 Batch 작업을 통해 구현 가능하다. `S3에 대한 복제와 지속적인 동기화가 가능`
