@@ -12,7 +12,7 @@ image:
   alt: What is AWS S3?
 ---
 
-### ✅ Amazon S3란 ?
+### ✅ Amazon S3란 ???
 ---
 - Amazon 에서 제공하는 저장 서비스이며, S3 는 `Simple Storage Service` 의 줄임 말이다.
 
