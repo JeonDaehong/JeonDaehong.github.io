@@ -118,7 +118,7 @@ image:
 		
 - **Object**
     
-	- S3 Object에는 `Key, Value, Version ID, Metadata, CORS(Cross Origin Resource Sharing)`와 같은 다양한 구성요소가 존재한다.
+	- S3 Object에는 `Key, Value, Version ID, Metadata, CORS(Cross Origin Resource Sharing)` 와 같은 다양한 구성요소가 존재한다.
     
 		- **1. Key : 전체 경로**
 			
