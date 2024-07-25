@@ -1,9 +1,9 @@
 ---
-title: Git Flow vs Github Flow
+title: Jenkins vs Travis CI
 author: daehong
-date: 2024-07-23 20:55:00 +0800
-categories: [Personal IT Study, Git]
-tags: [Git, Github, Gitlab, Git Flow, Github Flow]
+date: 2024-07-25 20:55:00 +0800
+categories: [Personal IT Study, CI/CD]
+tags: [CI, CD, Jenkins, Travis CI, Infra]
 render_with_liquid: false
 pin: true
 image:
