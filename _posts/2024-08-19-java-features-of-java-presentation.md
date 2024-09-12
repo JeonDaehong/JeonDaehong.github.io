@@ -37,7 +37,7 @@ image:
 
 <br>
 
-### ✏️ 자바의 등장 배경
+## ✏️ 자바의 등장 배경
 ---
 
 **먼저 자바의 등장 배경을 간단히 알아보겠다.**
@@ -52,7 +52,7 @@ image:
 
 <br>
 
-### ✏️ 절차지향 vs 객체지향
+## ✏️ 절차지향 vs 객체지향
 ---
 
 ![image](https://github.com/user-attachments/assets/9fc67b1b-06b4-49f6-893f-72d14cebeb4e)
@@ -95,7 +95,7 @@ image:
 
 <br>
 
-### ✏️ 객체지향이란?
+## ✏️ 객체지향이란?
 ---
 
 **그러면 자바의 가장 중요한 핵심 중 하나인, 그 객체지향에 대해 좀 더 자세히 들여다보겠다.**
@@ -128,7 +128,7 @@ image:
 
 <br>
 
-### ✏️ 캡슐화
+## ✏️ 캡슐화
 
 ![image](https://github.com/user-attachments/assets/e0e066e1-0dab-489f-8eaf-829d8d558051)
 
@@ -160,7 +160,7 @@ Getter/Setter 함수는 기본적으로 어떻게 구현되어 있는지 알 것
 
 <br>
 
-### ✏️ 상속
+## ✏️ 상속
 
 ![image](https://github.com/user-attachments/assets/d1736e9e-7102-4555-913b-1a405c947e6b)
 
