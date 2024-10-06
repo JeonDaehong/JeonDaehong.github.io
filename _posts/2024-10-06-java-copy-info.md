@@ -3,7 +3,7 @@ title: Java Shallow copy, Deep copy
 author: daehong
 date: 2024-10-06 20:55:00 +0800
 categories: [Personal IT Study, Java]
-tags: [Java, Study, Copy]
+tags: [Java, Study, Shallow Copy, Deep copy]
 render_with_liquid: false
 pin: true
 image:
