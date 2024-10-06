@@ -1,5 +1,5 @@
 ---
-title: CI/CD Introduction
+title: ＃3 CI/CD Introduction
 author: daehong
 date: 2024-07-25 20:55:00 +0800
 categories: [Personal IT Study, CI/CD]

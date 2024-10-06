@@ -1,5 +1,5 @@
 ---
-title: Java OOP, SOLID Deep Dive Presentation
+title: ＃7 Java OOP, SOLID Deep Dive Presentation
 author: daehong
 date: 2024-08-19 22:00:00 +0800
 categories: [IT Presentation, Company]

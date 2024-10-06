@@ -1,5 +1,5 @@
 ---
-title: How to Solve Concurrency Issue ?!
+title: ＃6 How to Solve Concurrency Issue ?!
 author: daehong
 date: 2024-07-28 20:55:00 +0800
 categories: [Develop Issue, Concurrency Issue]
