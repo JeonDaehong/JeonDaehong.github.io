@@ -66,6 +66,8 @@ System.out.println(Arrays.toString(b)) // [100, 2, 3, 4, 5]
 
 <br>
 
+![image](https://github.com/user-attachments/assets/888b6641-63c2-42eb-8c4d-8445edc6403d)
+
 ## ✏️ Shallow Copy
 ---
 
@@ -74,9 +76,79 @@ System.out.println(Arrays.toString(b)) // [100, 2, 3, 4, 5]
 객체를 그냥 = 으로 복사하는 개념으로, 동등이 아닌 동일하게 복사를 한다. ( 객체 주소 자체를 복사해서 옮김 )
 
 ```java
-TestClass a = new TestClass();
-TestClass b = new TestClass();
-a = b;
+public class Main {
+    public static void main(String[] args) {
+        // 원본 배열
+        String[] arr1 = {"Apple", "Banana", "Cherry"};
+
+        // 얕은 복사: arr2는 arr1을 가리키는 참조만 복사 (원본과 같은 주소)
+        String[] arr2 = arr1;
+
+        
+
+        System.out.println("=== 초기 상태 ===");
+        System.out.println("원본 배열 arr1: " + Arrays.toString(arr1));
+        System.out.println("얕은 복사본 arr2: " + Arrays.toString(arr2));
+
+        // 원본 배열의 값 변경
+        arr1[0] = "Orange";
+
+        System.out.println("\n=== 원본 배열 수정 후 ===");
+        System.out.println("원본 배열 arr1: " + Arrays.toString(arr1));
+        System.out.println("얕은 복사본 arr2: " + Arrays.toString(arr2)); // 얕은 복사본도 변경됨
+    }
+}
+```
+
+```java
+class ArrayContainer implements Cloneable {
+    int[] data;
+
+    // 생성자
+    ArrayContainer(int[] data) {
+        this.data = data;
+    }
+
+    // 얕은 복사 (Cloneable 사용)
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    // 배열 내용을 쉽게 확인하기 위한 toString 메서드
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < data.length; i++) {
+            sb.append(data[i]);
+            if (i < data.length - 1) sb.append(", ");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        // 원본 배열과 객체 생성
+        int[] originalData = {1, 2, 3, 4, 5};
+        ArrayContainer original = new ArrayContainer(originalData);
+
+        // 얕은 복사 (Cloneable 사용)
+        ArrayContainer shallowCopy = (ArrayContainer) original.clone();
+
+        System.out.println("=== 초기 상태 ===");
+        System.out.println("원본: " + original);
+        System.out.println("얕은 복사본: " + shallowCopy);
+
+        // 원본 배열의 값을 변경
+        original.data[0] = 100;
+
+        System.out.println("\n=== 원본 배열 변경 후 ===");
+        System.out.println("원본: " + original);        // 원본 배열이 100으로 변경됨
+        System.out.println("얕은 복사본: " + shallowCopy); // 얕은 복사본도 100으로 변경됨
+    }
+}
 ```
 	
 이렇게 할 시, a == b를 하면 true가 나온다.
@@ -94,9 +166,106 @@ a = b;
 
 깊은 복사
 
+```java
+public class Main {
+    public static void main(String[] args) {
+        // 원본 배열
+        String[] arr1 = {"Apple", "Banana", "Cherry"};
+
+        // 얕은 복사: arr2는 arr1을 가리키는 참조만 복사 (원본과 같은 주소)
+        String[] arr2 = arr1;
+
+        // 깊은 복사: 새로운 배열을 생성하고 각 값을 복사
+        String[] arr3 = Arrays.copyOf(arr1, arr1.length);
+
+        System.out.println("=== 초기 상태 ===");
+        System.out.println("원본 배열 arr1: " + Arrays.toString(arr1));
+        System.out.println("얕은 복사본 arr2: " + Arrays.toString(arr2));
+        System.out.println("깊은 복사본 arr3: " + Arrays.toString(arr3));
+
+        // 원본 배열의 값 변경
+        arr1[0] = "Orange";
+
+        System.out.println("\n=== 원본 배열 수정 후 ===");
+        System.out.println("원본 배열 arr1: " + Arrays.toString(arr1));
+        System.out.println("얕은 복사본 arr2: " + Arrays.toString(arr2)); // 얕은 복사본도 변경됨
+        System.out.println("깊은 복사본 arr3: " + Arrays.toString(arr3)); // 깊은 복사본은 변경되지 않음
+    }
+}
+```
+
+```java
+class ArrayContainer implements Cloneable {
+    int[] data;
+
+    // 생성자
+    ArrayContainer(int[] data) {
+        this.data = data;
+    }
+
+    // 얕은 복사 (Cloneable 사용)
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    // 깊은 복사 (직접 배열 복사)
+    protected ArrayContainer deepCopy() {
+        // 새로운 배열을 생성하고 각 원소를 개별적으로 복사
+        int[] newData = new int[data.length];
+        for (int i = 0; i < data.length; i++) {
+            newData[i] = data[i];
+        }
+        return new ArrayContainer(newData);
+    }
+
+    // 배열 내용을 쉽게 확인하기 위한 toString 메서드
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        for (int i = 0; i < data.length; i++) {
+            sb.append(data[i]);
+            if (i < data.length - 1) sb.append(", ");
+        }
+        sb.append("]");
+        return sb.toString();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws CloneNotSupportedException {
+        // 원본 배열과 객체 생성
+        int[] originalData = {1, 2, 3, 4, 5};
+        ArrayContainer original = new ArrayContainer(originalData);
+
+        // 얕은 복사 (Cloneable 사용)
+        ArrayContainer shallowCopy = (ArrayContainer) original.clone();
+
+        // 깊은 복사 (직접 배열 복사)
+        ArrayContainer deepCopy = original.deepCopy();
+
+        System.out.println("=== 초기 상태 ===");
+        System.out.println("원본: " + original);
+        System.out.println("얕은 복사본: " + shallowCopy);
+        System.out.println("깊은 복사본: " + deepCopy);
+
+        // 원본 배열의 값을 변경
+        original.data[0] = 100;
+
+        System.out.println("\n=== 원본 배열 변경 후 ===");
+        System.out.println("원본: " + original);        // 원본 배열이 100으로 변경됨
+        System.out.println("얕은 복사본: " + shallowCopy); // 얕은 복사본도 100으로 변경됨
+        System.out.println("깊은 복사본: " + deepCopy);   // 깊은 복사본은 변경되지 않음
+    }
+}
+
+```
+
 Cloneable 인터페이스를 implement 한 후, clone( )을 재정의하거나
 
 새 메모리를 생성하여 값들을 하나하나 옮기거나 직렬화 역직렬화를 통해 Deep Copy를 수행할 수 있다.
 
-객체 주소는 복사하지 않되, 내용은 그대로 복사하는 방법을 말한다.
+혹은 값을 하나하나 복사하는 메서드를 만들어 사용할 수도 있다.
+
+아무튼 깊은 복사는 객체 주소는 복사하지 않되, 내용은 그대로 복사하는 방법을 말한다.
 
