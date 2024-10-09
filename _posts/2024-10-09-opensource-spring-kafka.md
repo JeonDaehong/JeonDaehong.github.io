@@ -9,7 +9,7 @@ pin: true
 image:
   path: /assets/img/thumbnail/opensource-contribute-springkafka.PNG
   lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-  alt: Open Source Contribute Spring Kafka
+  alt: Open Source Contribute Spring Kafka !
 ---
 
 오픈 소스에 기여하고, 컨트리뷰터가 되고 싶다는 생각을 가진건 작년부터였다.
