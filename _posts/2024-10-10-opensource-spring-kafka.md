@@ -7,9 +7,9 @@ tags: [OpenSource, OpenSourceContribute, Spring Kafka]
 render_with_liquid: false
 pin: true
 image:
-  path: /assets/img/thumbnail/opensource-contribute-springkafka.png
+  path: /assets/img/thumbnail/Apache_ZooKeeper_logo.png
   lqip: data:image/webp;base64,UklGRpoAAABXRUJQVlA4WAoAAAAQAAAADwAABwAAQUxQSDIAAAARL0AmbZurmr57yyIiqE8oiG0bejIYEQTgqiDA9vqnsUSI6H+oAERp2HZ65qP/VIAWAFZQOCBCAAAA8AEAnQEqEAAIAAVAfCWkAALp8sF8rgRgAP7o9FDvMCkMde9PK7euH5M1m6VWoDXf2FkP3BqV0ZYbO6NA/VFIAAAA
-  alt: Open Source Contribute Spring Kafka
+  alt: Apache ZooKeeper Introduction
 ---
 
 오픈 소스에 기여하고, 컨트리뷰터가 되고 싶다는 생각을 가진건 작년부터였다.
@@ -20,8 +20,7 @@ image:
 
 그럼 지금부터 Spring/Kafka 의 컨트리뷰터가 되기까지의 과정을 리뷰하도록 하겠다.
 
+<br>
 
 ## ✏️ 도전하게 된 배경
 ---
-
-
