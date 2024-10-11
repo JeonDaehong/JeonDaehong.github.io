@@ -1,5 +1,5 @@
 ---
-title: ＃9 OpenSource Contribute - spring kafka
+title: ＃9 OpenSource Contribute - spring/kafka
 author: daehong
 date: 2024-10-09 22:50:00 +0800
 categories: [OpenSource Contribute, Spring Kafka]
