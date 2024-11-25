@@ -2,19 +2,23 @@
 layout: default
 ---
 
-{% include lang.html %}
 
-<article class="px-1">
-  {% if page.layout == 'page' or page.collection == 'tabs' %}
-    {% assign tab_key = page.title | downcase %}
-    {% assign title = site.data.locales[lang].tabs[tab_key] | default: page.title %}
-    <h1 class="dynamic-title">
-      {{ title }}
-    </h1>
-    <div class="content">
-      {{ content }}
+<section>
+    <div class="section-title">
+        <h2><span>{{ page.title }}</span></h2>
     </div>
-  {% else %}
-    {{ content }}
-  {% endif %}
-</article>
+
+    <div class="article-post">
+    {{content}}
+    </div>
+
+    {% if page.comments == true %}
+
+    <div id="comments" class="row mb-5">
+        <div class="col-md-8">
+            {% include disqus.html %}
+        </div>
+    </div>
+
+    {% endif %}
+</section>
