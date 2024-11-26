@@ -1,0 +1,28 @@
+name: "Style Lint"
+
+on:
+  push:
+    branches: ["master"]
+    paths: ["_sass/**/*.scss"]
+  pull_request:
+    paths: ["_sass/**/*.scss"]
+
+jobs:
+  stylelint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Install Dependencies
+        run: bundle install
+
+      - name: Run SCSS Lint
+        run: bundle exec scss-lint _sass/

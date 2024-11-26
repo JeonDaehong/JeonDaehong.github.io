@@ -1,0 +1,38 @@
+version: 2
+updates:
+  - package-ecosystem: "bundler"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "chore"
+    labels:
+      - "dependencies"
+  - package-ecosystem: "npm"
+    directory: "/"
+    versioning-strategy: increase
+    groups:
+      npm:
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "chore"
+    labels:
+      - "dependencies"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    groups:
+      gh-actions:
+        update-types:
+          - "major"
+    schedule:
+      interval: "monthly"
+    commit-message:
+      prefix: "chore"
+    labels:
+      - "dependencies"
+    
