@@ -1,10 +1,10 @@
 # Site
-name: "Mediumish"
-title: "Mediumish"
+name: "DaehongBlog"
+title: "DaehongBlog"
 description: "Jekyll template, Medium styled, free for bloggers."
 logo: "assets/images/logo.png"
 favicon: "assets/images/logo.png"
-url: "https://JangGiWon.github.io"
+url: "https://jeondaehong.github.io/"
 baseurl: ""
 google_analytics: "UA-46278016-1"
 disqus: "demowebsite"
@@ -31,6 +31,14 @@ authors:
     web: https://www.wowthemes.net
     twitter: https://twitter.com/wowthemesnet
     description: "This is the author box. Write a short description of the author here. You are currently previewing Mediumish demo, a Jekyll template compatible with Github pages."
+   daehong:
+    name: JeonDaehong
+    display_name: Dahong
+    avatar: "assets/images/daehong.jpg"
+    gravatar: b1cc14991db7a456fcd761680bbc8f81
+    email: daehong770@gmail.com
+    web: https://jeondaehong.github.io/
+    description: "I am a backend developer and a data engineer. I strive to study and grow step by step, day by day."
 
 # Plugins
 plugins:
