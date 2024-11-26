@@ -33,12 +33,12 @@ authors:
     description: "This is the author box. Write a short description of the author here. You are currently previewing Mediumish demo, a Jekyll template compatible with Github pages."
   daehong:
     name: JeonDaehong
-    display_name: Dahong
+    display_name: Daehong
     avatar: "assets/images/daehong.jpg"
     gravatar: b1cc14991db7a456fcd761680bbc8f81
     email: daehong770@gmail.com
-    web: https://jeondaehong.github.io/
-    twitter: https://jeondaehong.github.io/
+    web: https://github.com/JeonDaehong
+    twitter: https://github.com/JeonDaehong
     description: "I am a backend developer and a data engineer. I strive to study and grow step by step, day by day."
 
 # Plugins
