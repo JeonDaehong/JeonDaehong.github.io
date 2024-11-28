@@ -3,7 +3,7 @@ layout: post
 title:  "Java : Final Keyword"
 author: daehong
 categories: [ Java ]
-image: assets/images/java-final-keyword.PNG
+image: assets/images/java-final-keyword.jpg
 featured: true
 ---
 
