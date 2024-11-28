@@ -1,17 +1,54 @@
 ---
 layout: post
-title:  "Red Riding Hood"
-author: sal
-categories: [ Jekyll, tutorial ]
-image: assets/images/1.jpg
+title:  "Java : Final Keyword"
+author: daehong
+categories: [ Java ]
+image: assets/images/java-final-keyword.png
 featured: true
 ---
-The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter. 
 
-An 1868 Prang catalogue would later claim that such “books in the shape of a regular paper Doll… originated with us”. 
+Java에서 **final** 키워드는 상수 선언, 상속 방지, 불변성을 보장하기 위해 사용됩니다.
 
-> It would seem the claim could also extend to die cut books in general, as we can’t find anything sooner, but do let us know in the comments if you have further light to shed on this! Such books are, of course, still popular in children’s publishing today, though the die cutting is not now limited to mere outlines, as evidenced in a beautiful 2014 version of the same Little Red Riding Hood story. 
+이로 인하여, **개발자들의 의도치 않은 코드 변경을 막을 수 있으며**, 바뀌지 않는 값이 들어온다는 것을 명시적으로 알려줄 수 있기에 **가독성**에도 좋습니다.
 
-The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes. 
+Java 에서 final 은 **변수, 메서드, 클래스**에 모두 사용 할 수 있습니다.
 
-As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.
+<br>
+
+## Final Variable
+
+ - final로 선언된 변수는 초기화된 후 **값을 변경할 수 없습니다.** 변수는 선언 시 또는 생성자에서 초기화되어야 합니다.
+
+ - 바꿀 수 없는 변수이므로 **Thread-Safe** 합니다.
+ 
+ ```java
+ final int MAX_VALUE = 100;
+ ```
+
+<br>
+ 
+## Final Method
+
+ - final로 선언된 메서드는 하위 클래스에서 **오버라이드할 수 없습니다.**
+ 
+ - 이는 하위 클래스가 메서드의 구현을 변경하지 못하게 하고 싶을 때 유용합니다.
+ 
+ ```java
+ public final void display() {
+    // 메서드 구현
+ }
+ ```
+
+<br>
+
+## Final Class
+
+ - final로 선언된 클래스는 **상속될 수 없습니다.**
+ 
+ - 이는 보안 이유로 상속을 방지하거나 클래스의 동작을 변경하지 않도록 보장하고 싶을 때 유용합니다.
+ 
+ ```java
+ public final class Constants {
+    // 클래스 구현
+ }
+ ```
