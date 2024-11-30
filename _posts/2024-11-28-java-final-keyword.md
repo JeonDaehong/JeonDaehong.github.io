@@ -5,6 +5,7 @@ author: daehong
 categories: [ Java ]
 image: assets/images/java-final-keyword.jpg
 featured: true
+rating: 5
 ---
 
 Java에서 **final** 키워드는 상수 선언, 상속 방지, 불변성을 보장하기 위해 사용됩니다.
