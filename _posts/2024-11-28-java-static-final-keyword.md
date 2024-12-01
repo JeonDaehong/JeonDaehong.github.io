@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Java : Final Keyword"
+title:  "Understanding Java static and final"
 author: daehong
 categories: [ Java ]
 image: assets/images/java-static-final-keyword.jpg
