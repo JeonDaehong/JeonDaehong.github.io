@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Understanding Java static and final"
+title:  "[#1] Understanding Java static and final"
 author: daehong
 categories: [ Java ]
 image: assets/images/java-static-final-keyword.jpg
