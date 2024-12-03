@@ -40,3 +40,78 @@ static 변수는 클래스가 메모리에 로드될 때 단 한 번 초기화�
 
 4. 메모리 효율성
 동일한 데이터를 여러 객체가 공유하므로 메모리 사용량을 줄일 수 있습니다. 그러나 GC의 대상이 되지 않으므로, 너무 남발하여 사용 할 시 메모리에 부담이 될 수 있습니다.
+
+### ▶ static 변수
+
+예시를 들면, 게임 내에서 공유 자원을 관리할 때 공유하는 변수로 사용 할 수 있습니다.
+```
+class ResourceManager {
+    static int totalMinerals = 500; // 모든 객체가 공유하는 자원 (미네랄)
+    static int totalGas = 200; // 모든 객체가 공유하는 자원 (가스)
+
+    // 자원 추가
+    static void gatherMinerals(int amount) {
+        totalMinerals += amount;
+    }
+
+    static void gatherGas(int amount) {
+        totalGas += amount;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // ResourceManager.totalMinerals와 totalGas는 공유됨
+        ResourceManager.gatherMinerals(50);
+        ResourceManager.gatherGas(20);
+
+        System.out.println("Total Minerals: " + ResourceManager.totalMinerals); // 550
+        System.out.println("Total Gas: " + ResourceManager.totalGas); // 220
+    }
+}
+```
+
+### ▶ static 메서드
+
+예시를 들면, 게임 내에서 두 지점 사이의 거리를 계산하는 메서드 등, 공유 메서드로 사용 할 수 있습니다.
+```
+class MathUtils {
+    // 두 점 사이의 거리 계산
+    static double calculateDistance(int x1, int y1, int x2, int y2) {
+        return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // static 메서드는 객체 생성 없이 호출 가능
+        double distance = MathUtils.calculateDistance(0, 0, 10, 10);
+        System.out.println("Distance: " + distance); // 출력: Distance: 14.142135623730951
+    }
+}
+```
+
+### ▶ static 블록
+
+예시를 들면, 게임 설정을 초기화 하는 것처럼 최초 로드 시 한 번만 실행 되는 부분으로 사용 할 수 있습니다.
+```
+class GameSettings {
+    static String mapName;
+    static int maxPlayers;
+
+    // static 블록: 클래스 로드 시 한 번 실행
+    static {
+        mapName = "Lost Temple";
+        maxPlayers = 8;
+        System.out.println("Game settings initialized.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // static 블록은 클래스 로드 시 실행되므로 출력이 이미 나타남
+        System.out.println("Map: " + GameSettings.mapName); // 출력: Map: Lost Temple
+        System.out.println("Max Players: " + GameSettings.maxPlayers); // 출력: Max Players: 8
+    }
+}
+```
