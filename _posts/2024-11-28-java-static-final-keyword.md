@@ -44,7 +44,7 @@ static 변수는 클래스가 메모리에 로드될 때 단 한 번 초기화�
 ### ▶ static 변수
 
 예시를 들면, 게임 내에서 공유 자원을 관리할 때 공유하는 변수로 사용 할 수 있습니다.
-```
+```java
 class ResourceManager {
     static int totalMinerals = 500; // 모든 객체가 공유하는 자원 (미네랄)
     static int totalGas = 200; // 모든 객체가 공유하는 자원 (가스)
@@ -74,7 +74,7 @@ public class Main {
 ### ▶ static 메서드
 
 예시를 들면, 게임 내에서 두 지점 사이의 거리를 계산하는 메서드 등, 공유 메서드로 사용 할 수 있습니다.
-```
+```java
 class MathUtils {
     // 두 점 사이의 거리 계산
     static double calculateDistance(int x1, int y1, int x2, int y2) {
@@ -94,7 +94,7 @@ public class Main {
 ### ▶ static 블록
 
 예시를 들면, 게임 설정을 초기화 하는 것처럼 최초 로드 시 한 번만 실행 되는 부분으로 사용 할 수 있습니다.
-```
+```java
 class GameSettings {
     static String mapName;
     static int maxPlayers;
