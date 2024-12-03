@@ -187,19 +187,19 @@ public class Main {
 
 <br>
 
-## final 키워드
+## ✏️ final 키워드
 ---
 
 <br>
 
-## static final 키워드
+## ✏️ static final 키워드
 ---
 
 <br>
 
-## 실무에서 활용 경험 및 이슈
+## ✏️ 실무에서 활용 경험 및 이슈
 ---
 
 <br>
 
-![image](https://github.com/user-attachments/assets/bf28d392-a620-414d-91d9-16d637a3b793)
+<img src="https://github.com/user-attachments/assets/bf28d392-a620-414d-91d9-16d637a3b793" style="width: 100%;">
