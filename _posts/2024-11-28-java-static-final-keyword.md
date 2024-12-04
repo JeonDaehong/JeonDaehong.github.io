@@ -197,7 +197,7 @@ public class Main {
 
 <br>
 
-## ✏️ 실무에서 활용 경험 및 이슈
+## ✏️ 실무에서 static final 활용 경험 및 이슈
 ---
 
 <br>
