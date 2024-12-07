@@ -20,7 +20,7 @@ rating: 5
 
 <br>
 
-## ✏️ static 키워드
+## ✏️ 1. static 키워드
 ---
 
 자바에서 `static` 키워드는 클래스 수준의 멤버(변수와 메서드)를 정의할 때 사용되며, 객체 지향 프로그래밍에서 매우 중요한 역할을 합니다. 일반적으로 변수와 메서드는 특정 객체에 속하지만, `static` 키워드를 사용하면 이들이 객체가 아닌 클래스에 속하게 됩니다.
@@ -79,7 +79,7 @@ class Counter {
 
 <br>
 
-### ▶ static 변수
+### ✏️ 1.1. static 변수
 
 static 변수는 클래스 로드 시 Method Area에 저장되며, 객체가 아닌 클래스에 속합니다.
 static 변수는 Method Area에 저장되므로, 모든 객체에서 동일한 값을 참조합니다.
@@ -120,7 +120,7 @@ public class Main {
 }
 ```
 
-### ▶ static 메서드
+### ✏️ 1.2. static 메서드
 
 static 메서드는 객체 상태와 무관하며, 클래스에 종속된 동작을 정의합니다.
 
@@ -150,7 +150,7 @@ public class Main {
 }
 ```
 
-### ▶ static 블록
+### ✏️ 1.3. static 블록
 
 static 블록은 클래스 로드 시 한 번만 실행되는 코드 블록입니다.
 주로 static 변수의 초기화나 설정 작업에 사용됩니다.
@@ -187,17 +187,17 @@ public class Main {
 
 <br>
 
-## ✏️ final 키워드
+## ✏️ 2. final 키워드
 ---
 
 <br>
 
-## ✏️ static final 키워드
+## ✏️ 3. static final 키워드
 ---
 
 <br>
 
-## ✏️ 실무에서 static final 활용 경험 및 이슈
+## ✏️ 4. 실무에서 static final 활용 경험 및 이슈
 ---
 
 <br>
