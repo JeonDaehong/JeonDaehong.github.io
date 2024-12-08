@@ -18,10 +18,8 @@ rating: 5
 
 <br>
 
-<div style="background-color: pink; padding: 5px;">
-
-<h2>🧊🧊 1. Apache Iceberg 란 ?</h2>
-
+<div style="background-color: pink; padding: 5px; margin: 0;">
+  <h2 style="margin: 0;">🧊🧊 1. Apache Iceberg 란 ?</h2>
 </div>
 ---
 
