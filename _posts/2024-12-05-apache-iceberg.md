@@ -31,7 +31,7 @@ rating: 5
 
 <br>
 
-<span style="background-color: lightblue;"><h3>&nbsp;🧊 1.1. Hive 의 한계 : 불완전한 ACID 지원&nbsp;</h3></span>
+<h3><span style="background-color: lightblue; padding: 0 5px;">🧊 1.1. Hive 의 한계 : 불완전한 ACID 지원</span></h3>
 ---
 
 **첫 번째 예시입니다.**
