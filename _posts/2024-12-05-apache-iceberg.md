@@ -54,7 +54,7 @@ rating: 5
 
 <br>
 
-### 🧊 1.2. Hive 의 한계 : MetaStore 의 병목 현상
+<h3><span style="background-color: lightblue; padding: 0 5px;">🧊 1.2. Hive 의 한계 : MetaStore 의 병목 현상</span></h3>
 ---
 
 **두 번째 예시입니다.**
@@ -97,7 +97,7 @@ GROUP BY account_id;
 
 <br>
 
-### 🧊 1.3. Hive 의 한계 : Schema 확장성의 한계
+<h3><span style="background-color: lightblue; padding: 0 5px;">🧊 1.3. Hive 의 한계 : Schema 확장성의 한계</span></h3>
 ---
 
 **세 번째 예시입니다.**
@@ -147,7 +147,7 @@ ADD COLUMNS (card_type STRING);
 
 <br>
 
-### 🧊 1.4. Hive 의 한계 : 기타 한계점
+<h3><span style="background-color: lightblue; padding: 0 5px;">🧊 1.4. Hive 의 한계 : 기타 한계점</span></h3>
 ---
 
 그 외에도 시간이 지남에 따라 데이터의 양이 폭발적으로 증가하면서, 디렉터리와 파일을 직접 스캔하는 형식으로 관리하는 **Hive** 에서는 조회 성능이 나빠지는 문제가 발견되기도 하였고,
@@ -182,7 +182,7 @@ WHERE customer_id = 'CUST12345';
 
 <br>
 
-### 🧊 1.5. Hive 의 한계를 극복하기 위한 새로운 테이블 포멧 방식의 등장
+<h3><span style="background-color: lightblue; padding: 0 5px;">🧊 1.5. Hive 의 한계를 극복하기 위한 새로운 테이블 포멧 방식의 등장</span></h3>
 ---
 
 **그러면 파일 목록을 메타데이터로 사용하는 테이블 포멧 방식이 뭘까요?**
@@ -197,7 +197,7 @@ WHERE customer_id = 'CUST12345';
 
 <br>
 
-### 🧊 1.6. Iceberg 의 네 가지 핵심 철학
+<h3><span style="background-color: lightblue; padding: 0 5px;">🧊 1.6. Iceberg 의 네 가지 핵심 철학</span></h3>
 ---
 
 **Apache Iceberg** 의 개발 철학 다섯 가지는 **“일관성”, “성능”, “편의성”, “확장성”**  입니다.
@@ -214,7 +214,7 @@ WHERE customer_id = 'CUST12345';
 **3. 편의성 (Convenience)**
 
 - Iceberg는 다양한 컴퓨팅 엔진(예: Apache Spark, Apache Flink, Dremio 등)과 호환되어 사용자가 친숙한 환경에서 작업할 수 있도록 합니다. 또한, 강력한 메타데이터 관리 기능을 통해 데이터 관리와 분석을 단순화합니다.
-- Hive에서는 사용자가 **파티션된 컬럼을 직접 필터링**해야 하는 번거로움이 있었습니다. 예를 들어, `timestamp`로 필터링할 때 이를 `month` 파티션으로 매핑해야 했습니다. 그러나 Iceberg는 사용자가 **직관적인 쿼리**만 작성해도 자동으로 파티셔닝을 활용할 수 있도록 설계되었습니다. 예를들면 자주 사용하는 컬럼에 대한 자동 파티셔닝을 지원합니다.
+- Hive에서는 사용자가 파티션된 컬럼을 직접 필터링해야 하는 번거로움이 있었습니다. 예를 들어, `timestamp`로 필터링 하고자 할 때 이를 `month` 파티션으로 집접 매핑해야 했습니다. 그러나 Iceberg는 사용자가 **직관적인 쿼리**만 작성해도 자동으로 파티셔닝을 활용할 수 있도록 설계되었습니다. 예를들면 자주 사용하는 컬럼에 대한 자동 파티셔닝을 지원합니다.
 
 **4. 확장성 (Scalability)**
 
@@ -224,7 +224,7 @@ WHERE customer_id = 'CUST12345';
 
 <br>
 
-### 🧊 1.7. Iceberg 의 일곱 가지 주요 장점
+<h3><span style="background-color: lightblue; padding: 0 5px;">🧊 1.7. Iceberg 의 일곱 가지 주요 장점</span></h3>
 ---
 
 이제 **Apache Iceberg**가 제공하는 **일곱 가지 주요 장점**에 대해 살펴보겠습니다. 이를 통해 Iceberg가 어떻게 **데이터 레이크하우스**의 강력한 기반으로 자리 잡고 있는지 더욱 구체적으로 이해할 수 있을 것입니다.
