@@ -2,7 +2,7 @@
 layout: post
 title:  "[#1] Understanding Java static and final"
 author: daehong
-categories: [ Java ]
+categories: [ Study, Java ]
 image: assets/images/java-static-final-keyword.jpg
 featured: true
 rating: 5
