@@ -2,7 +2,7 @@
 layout: post
 title:  "[#2] Apache Iceberg Deep Dive - How Does It Address the Limitations of Hive?"
 author: daehong
-categories: [ Study, Study/Iceberg ]
+categories: [ Study, Iceberg ]
 image: assets/images/apache-iceberg.png
 featured: true
 rating: 5
