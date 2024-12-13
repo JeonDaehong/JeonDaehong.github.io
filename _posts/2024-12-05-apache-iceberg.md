@@ -237,3 +237,48 @@ WHERE customer_id = 'CUST12345';
 
 예시를 하나 들어보며, 어떻게 동작하기에 ACID 를 지원해주는지 설명해드리겠습니다. 고객 입출금 데이터셋이 있고, A 팀과, B 팀에서 해당 데이터를 동시에 업데이트 해야 할 일이 발생하였습니다. 그리고 그 사이 C 팀에서 해당 데이터를 조회했다고 가정하겠습니다. Hive 였으면, 앞서 설명드렸듯 데이터 유실, 잘못된 데이터 조회 등의 문제가 발생할 수 있지만 Iceberg 는 그렇지 않습니다.
 
+먼저 테이블의 최신 스냅샷 메타데이터를 로드하여 현재 테이블 상태를 가져옵니다. ( part-00000.parquet)
+
+```JSON
+{
+  "snapshot_id": 1001,
+  "timestamp_ms": 1700000000000,
+  "manifest_list": "s3a://iceberg-data/manifest-list-1001.avro",
+  "summary": {
+    "operation": "append",
+    "added_files": 1,
+    "deleted_files": 0,
+    "added_rows": 1000,
+    "deleted_rows": 0
+  }
+}
+```
+
+```JSON
+[
+  {
+    "manifest_path": "s3a://iceberg-data/manifest-1001.avro",
+    "manifest_length": 1024,
+    "partition_spec_id": 0,
+    "added_data_files_count": 1,
+    "existing_data_files_count": 0,
+    "deleted_data_files_count": 0
+  }
+]
+```
+
+```JSON
+[
+  {
+    "file_path": "s3a://iceberg-data/part-00000.parquet",
+    "partition": {"customer_id": "12345"},
+    "record_count": 100000,
+    "file_size_in_bytes": 1048576,
+    "status": "ADDED"
+  }
+]
+```
+
+순서대로 메타데이터 파일, 매니페스트 리스트 파일, 매니페스트 파일입니다.
+
+이후, A 팀과, B 팀에서 각각의 트랜잭션이 시작됩니다.
