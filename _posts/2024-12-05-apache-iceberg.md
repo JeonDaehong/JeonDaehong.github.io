@@ -200,7 +200,7 @@ WHERE customer_id = 'CUST12345';
 <h3><span style="background-color: lightblue; padding: 0 5px;">🧊 1.6. Iceberg 의 네 가지 핵심 철학</span></h3>
 ---
 
-**Apache Iceberg** 의 개발 철학 다섯 가지는 **“일관성”, “성능”, “편의성”, “확장성”**  입니다.
+**Apache Iceberg** 의 개발 철학 네 가지는 **“일관성”, “성능”, “편의성”, “확장성”**  입니다.
 
 **1. 일관성 (Consistency)**
 
