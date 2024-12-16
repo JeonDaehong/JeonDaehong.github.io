@@ -8,6 +8,10 @@ featured: true
 rating: 5
 ---
 
+결론부터 이야기하면, scala 코드를 하나 고친 것 만으로, 작업 성능이 5배 이상 좋아졌다.
+
+<br>
+
 ### ✏️ Problem
 ---
 
@@ -15,7 +19,7 @@ rating: 5
 
 코드는 다음과 같았다.
 
-```scala
+```java
 
 val df = spark.read.option("header", "true").option("inferSchema", "true").csv("/~/*.csv")
 
@@ -71,7 +75,7 @@ Spark 는 기본적으로 병렬 처리 구조이며, 읽고 처리하는 단계
 **나는 결국 이 문제를 해결하기 위해, 코드를 아래와 같이 바꿨다.**
 
 
-```scala
+```java
 
 val df = spark.read.option("header","true").csv("/~/data").na.fill("").withColumn("partitioned",regexp_replace(substring(col("use_dttm"),1,7),"-","")).orderBy(col("partitioned"))
 
