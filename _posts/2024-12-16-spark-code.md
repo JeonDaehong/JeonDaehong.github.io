@@ -19,7 +19,7 @@ rating: 5
 
 코드는 다음과 같았다.
 
-```java
+```
 
 val df = spark.read.option("header", "true").option("inferSchema", "true").csv("/~/*.csv")
 
@@ -29,7 +29,10 @@ val months = dfWithMonth.select("month").distinct().as[String].collect()
 
 val outputPath = "/~/output"
 
-months.foreach { month => val monthData = dfWithMonth.filter(col("month") === month); monthData.write.option("header", "true").mode("overwrite").csv(s"$outputPath/$month") } 
+months.foreach { month => 
+	val monthData = dfWithMonth.filter(col("month") === month);
+	monthData.write.option("header", "true").mode("overwrite").csv(s"$outputPath/$month")
+} 
 
 ```
 
@@ -75,7 +78,7 @@ Spark 는 기본적으로 병렬 처리 구조이며, 읽고 처리하는 단계
 **나는 결국 이 문제를 해결하기 위해, 코드를 아래와 같이 바꿨다.**
 
 
-```java
+```
 
 val df = spark.read.option("header","true").csv("/~/data").na.fill("").withColumn("partitioned",regexp_replace(substring(col("use_dttm"),1,7),"-","")).orderBy(col("partitioned"))
 
