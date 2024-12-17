@@ -73,14 +73,12 @@ Spark 는 기본적으로 병렬 처리 구조이며, 읽고 처리하는 단계
 
 처음에는 단순이 `coalesce` 를 통해 최적화를 하려헀지만, 이 역시 시간은 오래 걸리고, **OOM** 문제가 발생하여, 다른 방법을 찾게 되었다.
 
-물론 Memory 를 더 주면 해결 될 수 있을 거 같았지만, 근본적인 문제가 해결되는 것은 아니기 때문에 고려하지 않았다.
-
 **나는 결국 이 문제를 해결하기 위해, 코드를 아래와 같이 바꿨다.**
 
 
 ```
 
-val df = spark.read.option("header","true").csv("/~/data").na.fill("").withColumn("partitioned",regexp_replace(substring(col("use_dttm"),1,7),"-","")).orderBy(col("partitioned"))
+val df = spark.read.option("header","true").csv("/~/data").na.fill("").withColumn("partitioned",regexp_replace(substring(col("use_dttm"),1,7),"-","")).orderBy(col("use_dttm"))
 
 df.repartition(1,col("partitioned")).write.option("header","true").partitionBy("partitioned").csv("/~/output")
 
@@ -97,6 +95,10 @@ spark 는 데이터의 저장 순서를 보장하지 않기 때문에, `orderBy`
 이걸 `write` 할 때에는, `repartition` 을 통해 `partitioned` 컬럼을 기준으로 재파티셔닝을 하였으며, 옵션을 통해 파티션 값당 하나의 파일을 생성하도록 하였다. 그로 인하여, 이후에 다시 병합하는 단계를 생략 할 수 있게 되었다.
 
 마지막으로는 `partitionBy("partitioned")` 을 통해 데이터를 `partitioned` 컬럼 값별로 디렉터리에 나누어 저장하였다.
+
+이와 더불어, spark 의 core 와 memory 를 더 할당하도록 코드를 추가하였다.
+
+spark-shell 로 따지면, --total-executor-cores 와 --executor-memory 를 직접 할당해주었다고 보면 된다.
 
 이로써 병합의 과정을 생략하게 되었고, 성능 역시 5배 이상 좋아지는 결과를 얻게 되었다.
 
