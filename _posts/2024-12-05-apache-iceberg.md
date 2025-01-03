@@ -372,6 +372,81 @@ WHERE customer_id = 'CUST12345';
 
 이처럼 Iceberg는 충돌이 발생할 경우, 해당 트랜잭션을 거부하고 데이터 일관성을 유지합니다. 이후 재시도를 통해 충돌 없이 변경 사항을 반영할 수 있도록 설계되어, **효율적인 충돌 감지**와 **ACID 보장**을 동시에 제공합니다.
 
+<br>
 
+**아이스버그**의 두 번째 강점은 파티션의 변경 및 확장성이 용이하다는 것입니다.
 
+먼저, 앞에 설명했던 Hive와 같은 기존 데이터 레이크에서 파티셔닝의 한계를 다시 말씀드리겠습니다.
 
+Hive에서는 데이터를 처음 저장할 때 **정해진 파티셔닝 방식**이 고정됩니다. 예를 들어, 데이터를 **월 단위**로 파티셔닝했다고 가정해 보겠습니다. 이후 비즈니스 요구가 변경되어 **일 단위**로 데이터를 파티셔닝해야 한다면, 이를 변경하기 위해 전체 데이터를 다시 써야 합니다. 이 작업은 테라바이트, 심지어 페타바이트 단위의 데이터를 다루는 환경에서는 엄청난 시간과 비용을 소모합니다.
+
+그렇다고 기존의 월별 파티셔닝 구조를 유지하면 어떻게 될까요? 일별 분석 쿼리를 실행할 때 월별 데이터에서 필요한 데이터를 필터링해야 하므로, **쿼리 성능이 크게 저하**됩니다. 특히, 분석팀이 특정 날짜에 대한 트랜잭션 데이터를 반복적으로 요청한다면, 쿼리 실행 시간과 리소스 소모는 더욱 증가하게 됩니다.
+
+하지만 **Apache Iceberg** 는 이러한 문제를 근본적으로 해결해줍니다. 파티션 구조를 변경하려면, **데이터 자체를 수정하거나 이동할 필요가 없습니다.** **Iceberg**는 파티셔닝 방식을 **메타데이터** 레벨에서 관리하기 때문입니다. 데이터를 다시 쓰는 대신, 파티션 스키마를 변경한 후 **메타데이터만 업데이트**하면 됩니다. 예를 들어, 기존의 월별 파티셔닝을 일별 파티셔닝으로 변경하려고 할 때, Iceberg에서는 수 분 내로 이 작업이 완료됩니다. 이는 대규모 데이터를 다룰 때 **시간과 비용을 획기적으로 절약**하게 해줍니다. 그렇기 때문에 특정 날짜나 특정 고객에 대한 쿼리가 많아지면 **고객 ID 기반 파티셔닝**이나 **일별 파티셔닝**으로 쉽게 전환 할 수 있으며, 유연하게 변경하여 성능을 최적화 할 수 있습니다.
+
+이 부분을 조금 더 뜯어보면 다음과 같습니다. 
+
+Iceberg의 파티션 정의는 **Partition Spec**이라는 메타 데이터 레벨에서 관리됩니다.
+
+```JSON
+{
+  "partition_specs": [
+    {
+      "spec_id": 0,
+      "fields": [
+        {"source_id": 3, "transform": "month", "field_id": 1000, "name": "transaction_date_month"}
+      ]
+    }
+  ],
+  "data_files": [
+    {"path": "s3a://iceberg-data/part-00000.parquet", "partition": {"transaction_date_month": "2024-01"}}
+  ] 
+}
+```
+
+여기에 사용자가, 다음과 같은 쿼리를 날렸다고 가정하겠습니다.
+
+```sql
+ALTER TABLE transactions 
+SET PARTITION SPEC (
+  YEAR(transaction_date),
+  MONTH(transaction_date),
+  DAY(transaction_date)
+);
+```
+
+이러면, Iceberg는 테이블의 메타데이터 파일(metadata.json)을 로드하여 현재의 Partition Spec을 확인합니다.
+
+이 파일에는 기존 파티셔닝 방식(`month(transaction_date)`)에 대한 정의와 관련된 데이터 파일 정보가 포함되어 있습니다.
+
+이후 사용자가 요청한 새로운 파티션 스키마(`year`, `month`, `day`)를 기반으로 새로운 Partition Spec을 생성합니다.
+
+이 새로운 스키마를 새로운 `spec_id` 로 관리합니다.
+
+```JSON
+{
+  "partition_specs": [
+    {
+      "spec_id": 0,
+      "fields": [
+        {"source_id": 3, "transform": "month", "field_id": 1000, "name": "transaction_date_month"}
+      ]
+    },
+    {
+      "spec_id": 1,
+      "fields": [
+        {"source_id": 3, "transform": "year", "field_id": 1001, "name": "transaction_date_year"},
+        {"source_id": 3, "transform": "month", "field_id": 1002, "name": "transaction_date_month"},
+        {"source_id": 3, "transform": "day", "field_id": 1003, "name": "transaction_date_day"}
+      ]
+    }
+  ],
+  "data_files": [
+    {"path": "s3a://iceberg-data/part-00000.parquet", "partition": {"transaction_date_year": "2024", "transaction_date_month": "01", "transaction_date_day": "01"}}
+  ]
+}
+```
+
+이후 아이스버그는 새로운 파티션 스펙인 spec_id = 1 을 활성화 합니다. 이전 spec_id = 0 은 보존되며, 과거 데이터와의 호환성을 유지하게 됩니다.
+
+사실 지금 메타데이터니, 매니패스트니 이런 단어들이 좀 생소하실 수도 있습니다. 이 부분에 대해서는 추후 아이스 버그의 아키텍처 부분에서 상세히 설명드리도록 하겠습니다.
