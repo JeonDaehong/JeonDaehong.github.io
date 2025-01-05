@@ -81,24 +81,6 @@ rating: 5
 
 이 때 다음과 같은 집계와, 보고서를 생성하기 위해, 여러 부서에서 동시에 해당 데이터로 접근을 합니다.
 
-**일 별 거래 집계 쿼리**
-
-```sql
-SELECT account_id, SUM(transaction_amount) AS daily_total
-FROM transactions
-WHERE transaction_date = '2024-12-01'
-GROUP BY account_id;
-```
-
-**주별 보고서 생성 ( 대시보드 반영을 위해 )**
-
-```sql
-SELECT account_id, SUM(payment_amount) AS weekly_payment
-FROM loan_payments
-WHERE payment_date BETWEEN '2024-11-25' AND '2024-12-01'
-GROUP BY account_id;
-```
-
 이 작업이 실행되면서 **MetaStore**에 과부하가 걸리기 시작합니다.
 
 그 이유는 **Hive** 는 쿼리 실행 전에 `transactions`와 `loan_payments` 테이블의 **파티션 정보**를 **MetaStore**에서 조회해야 하지만, `transactions` 테이블은 날짜별, 계좌별로 수천 개의 파티션을 가지고 있고, MetaStore는 RDBMS(MySQL)에서 이러한 파티션 정보를 순차적으로 조회하므로, 대규모 파티션에서 조회 시간이 급격히 늘어나기 때문입니다.
