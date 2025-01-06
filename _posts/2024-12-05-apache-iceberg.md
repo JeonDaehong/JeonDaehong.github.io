@@ -14,7 +14,9 @@ rating: 5
 
 이렇게 이윤과 성장이라는 다른 중점은 가지고 있지만, 이익을 추구한다는 관점은 같다고 볼 수 있습니다.
 
-그러한 면에서 **Apache Iceberg** 은 기업 입장에서도, 개발자 입장에서도 반드시 도입해야 할 기술이라는 결론을 먼저 말씀드리며, 지금부터 왜 **Apache Iceberg**를 도입해야 하는지, 대체 **Apache Iceberg**가 무엇인지 이 거대한 빙산을 조금씩 녹여가며 중요한 부분들에 대해 이야기하도록 하겠습니다.
+<img src="https://github.com/user-attachments/assets/880e24fd-5dd7-46f7-9703-50e07c5beb46" style="width: 100%;"/>
+
+그러한 면에서 **Apache Iceberg** 은 기업 입장에서도, 개발자 입장에서도 반드시 도입해야 할 기술이라는 결론을 먼저 말씀드리며, 지금부터 왜 **Apache Iceberg**를 도입해야 하는지, 대체 **Apache Iceberg**가 무엇인지 아이스 버그라는 거대한 빙산을 조금씩 녹여가며 중요한 부분들에 대해 이야기하도록 하겠습니다.
 
 <br>
 
@@ -23,7 +25,11 @@ rating: 5
 </div>
 ---
 
+<img src="https://github.com/user-attachments/assets/a68c9766-1cbd-4de1-bbe6-4aa313665d4b" style="width: 100%;"/>
+
 **Apache Iceberg**는 **2017년 Netflix**에서 **Apache Hive**의 한계를 극복하기 위해 개발된 개방형 테이블 형식의 데이터 관리 시스템입니다. 대규모 데이터 세트를 효율적으로 관리하고 처리하기 위한 목적으로 만들어졌으며, 현재는 **Apache** 재단에 기부된 오픈소스 프로젝트입니다. 데이터 엔지니어들 사이에서는 데이터를 효과적으로 관리하고 실시간으로 **쿼리(Query)**할 수 있는 도구로 주목받으며 최근 큰 인기를 끌고 있습니다.
+
+<img src="https://github.com/user-attachments/assets/955eb187-ce92-46c1-8097-e9ec8fedb41e" style="width: 100%;"/>
 
 **Apache Hive**의 주요 한계로는 **ACID 지원 부족, MetaStore의 병목 현상, Schema 확장성의 한계, 디렉터리 및 파일 조회 시간 문제, 파티션 필터링의 비효율성, 그리고 높은 지연 시간(Latency)** 등이 꼽힙니다.
 
@@ -82,6 +88,8 @@ rating: 5
 이 때 다음과 같은 집계와, 보고서를 생성하기 위해, 여러 부서에서 동시에 해당 데이터로 접근을 합니다.
 
 이 작업이 실행되면서 **MetaStore**에 과부하가 걸리기 시작합니다.
+
+<img src="https://github.com/user-attachments/assets/6321721a-f666-47b7-9e97-5160dc8697f8" style="width: 100%;"/>
 
 그 이유는 **Hive** 는 쿼리 실행 전에 `transactions`와 `loan_payments` 테이블의 **파티션 정보**를 **MetaStore**에서 조회해야 하지만, `transactions` 테이블은 날짜별, 계좌별로 수천 개의 파티션을 가지고 있고, MetaStore는 RDBMS(MySQL)에서 이러한 파티션 정보를 순차적으로 조회하므로, 대규모 파티션에서 조회 시간이 급격히 늘어나기 때문입니다.
 
