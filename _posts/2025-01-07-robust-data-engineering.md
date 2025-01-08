@@ -19,6 +19,8 @@ rating: 5
 ## 📚 1장 : 데이터 엔지니어링 기반 구축하기 ️
 ---
 
+<img src="https://github.com/user-attachments/assets/9049daff-6c3f-426b-b5e9-7c31f3c4ab90" style="width: 100%;"/>
+
 ### ✏️ 1-1. 데이터 엔지니어링이란?
 
 - <span style="color:blue;">**🔥 알텍스소프트의 데이터 엔지니어링의 개념, 프로세스 및 도구**</span>
@@ -182,6 +184,9 @@ rating: 5
 
 ## 📚 2장 : 데이터 엔지니어링 수명 주기
 ---
+
+<img src="https://github.com/user-attachments/assets/1ff3407e-2480-4d12-bdd8-9db2d860b0fb" style="width: 100%;"/>
+- **출처** : 견고한 데이터 엔지니어링 책
 
 ### ✏️ 2-1. 데이터 엔지니어링 수명 주기란?
 
