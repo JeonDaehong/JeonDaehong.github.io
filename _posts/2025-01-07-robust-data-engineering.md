@@ -186,7 +186,7 @@ rating: 5
 ---
 
 <img src="https://github.com/user-attachments/assets/1ff3407e-2480-4d12-bdd8-9db2d860b0fb" style="width: 100%;"/>
-- **출처** : 견고한 데이터 엔지니어링 책
+<p style="text-align: right;">출처 : 견고한 데이터 엔지니어링 책</p>
 
 ### ✏️ 2-1. 데이터 엔지니어링 수명 주기란?
 
