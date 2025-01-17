@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[#3] Spark Code Optimization at Work"
+title:  "[#3] 사내 스파크 코드 최적화 개발 일지"
 author: daehong
 categories: [ company, spark ]
 image: assets/images/company-spark.png
