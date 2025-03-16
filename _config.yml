@@ -1,82 +1,53 @@
-# Site
-name: "Daehong Blog"
-title: "Daehong Blog"
-description: "Technical Blog of Jeon-Daehong: Backend Developer and Data Engineer"
-logo: "assets/images/daehong-icon.jpg"
-favicon: "assets/images/daehong-icon.jpg"
-url: "https://jeondaehong.github.io/"
-baseurl: ""
-google_analytics: "UA-46278016-1"
-disqus: "demowebsite"
-mailchimp-list: "https://wowthemes.us11.list-manage.com/subscribe/post?u=8aeb20a530e124561927d3bd8&amp;id=8c3d2d214b"
-include: ["_pages"]
-permalink: /:title/
+title: example.com
+description: "Satellite - jekyll blog theme"
+logo_img: "/assets/img/favicon.webp"
+profile_img: "/assets/img/profile.webp"
 
-# Authors
-authors:
-  sal:
-    name: Sal
-    display_name: Sal
-    gravatar: e56154546cf4be74e393c62d1ae9f9d4
-    email: wowthemesnet@gmail.com
-    web: https://www.wowthemes.net
-    twitter: https://twitter.com/wowthemesnet
-    description: "Author of Mediumish, a Bootstrap Medium styled template available for WordPress, HTML, Ghost and Jekyll. You are currently previewing Jekyll template demo."
-  john:
-    name: John
-    display_name: John
-    avatar: "assets/images/avatar.png"
-    gravatar: b1cc14991db7a456fcd761680bbc8f81
-    email: wowthemesnet@gmail.com
-    web: https://www.wowthemes.net
-    twitter: https://twitter.com/wowthemesnet
-    description: "This is the author box. Write a short description of the author here. You are currently previewing Mediumish demo, a Jekyll template compatible with Github pages."
-  daehong:
-    name: JeonDaehong
-    display_name: Daehong
-    avatar: "assets/images/daehong.jpg"
-    gravatar: b1cc14991db7a456fcd761680bbc8f81
-    email: daehong770@gmail.com
-    web: https://github.com/JeonDaehong
-    twitter: https://github.com/JeonDaehong
-    description: "I am a backend developer and a data engineer. I strive to study and grow step by step, day by day."
+# Social Links
+email: example@gmail.com
+github_username: github
+twitter_username: twitter
+instagram_username: instagram
+linkedin_username: linkedin
+facebook_username: facebook
 
-# Plugins
+# External API
+giscus_repo: "byanko55/jekyll-theme-satellite"
+giscus_repoId: "R_kgDOJ6fqWg"
+giscus_category: "Q&A"
+giscus_categoryId: "DIC_kwDOJ6fqWs4Cc7p7"
+goatcounter_code: byanko77
+google_analytics:
+
+# If your repo name follows the format "<user-name>.github.io", then leave the below blank.
+# Otherwise, set its value as "/<repo-name>". ex) baseurl: /myblog
+baseurl:
+
+# Build settings
 plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
   - jekyll-feed
+  - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-archives
+  - jekyll-loading-lazy
 
-# Archives
-jekyll-archives:
-  enabled:
-    - categories
-  layout: archive
-  permalinks:
-    category: "/category/:name/"
+exclude:
+  - docs/
 
-# Pagination
-paginate: 6
-paginate_path: /page:num/
+collections:
+  pages:
+    output: true
+    permalink: /:path.html
 
-# Other
-markdown: kramdown
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      date: "1900-01-01"
 
+# Markdown newline activator 
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    block:
-      line_numbers: true
-
-# Adsense (change to "enabled" to activate, also your client id and ad slot. Create a new ad unit from your Adsense account to get the slot.)
-adsense: "disabled"
-adsense-data-ad-client: "ca-pub-3412143450191416"
-adsense-data-ad-slot: "1363087678"
-
-# Lazy Images ("enabled" or "disabled")
-lazyimages: "disabled"
-
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
+  hard_wrap: true
