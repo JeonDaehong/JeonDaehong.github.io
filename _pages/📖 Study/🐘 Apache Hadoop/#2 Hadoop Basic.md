@@ -1,5 +1,5 @@
 ---
-title: "[#1] Apache Hadoop Basic"
+title: "[#2] Apache Hadoop Basic"
 tags:
     - Apache
     - Hadoop
