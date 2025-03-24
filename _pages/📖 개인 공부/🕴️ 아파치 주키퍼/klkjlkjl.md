@@ -1,11 +1,10 @@
 ---
-title: "[#2] Apache Zookeeper Overview"
+title: "hgjg"
 tags:
     - Apache
 	- Zookeeper
     - Study
 date: "2025-03-11"
-thumbnail: "/assets/img/thumbnail/hadoop_basic.png"
 bookmark: true
 ---
 
