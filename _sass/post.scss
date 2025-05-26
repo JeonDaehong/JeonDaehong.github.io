@@ -171,7 +171,7 @@ main {
   padding:1rem;
   margin:auto;
   font-size:1rem;
-  line-height:150%;
+  line-height:170%;
   position:relative;
   overflow-wrap:break-word;
   word-wrap:break-word;
@@ -215,7 +215,7 @@ main {
     }
   }
 
-  p, ul, table, div { margin-bottom:3rem; }
+  p, ul, table, div { margin-bottom:2em; }
 
   p + div,
   p + pre,
