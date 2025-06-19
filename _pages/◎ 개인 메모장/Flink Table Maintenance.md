@@ -19,7 +19,7 @@ The `TableMaintenance` API in **Apache Iceberg** enables **Flink jobs** to execu
 
 ## Quick Start
 ---
-Here's a simple example that sets up automated maintenance for an Iceberg table:
+Here's a simple example that sets up automated maintenance for an Iceberg table.
 
 ```java
 StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
