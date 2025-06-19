@@ -133,12 +133,12 @@ public class TableMaintenanceJob {
             
             // Continuous file optimization
             .add(RewriteDataFiles.builder()
-                .targetFileSizeBytes(256 * 1024 * 1024) // 256MB
-                .minFileSizeBytes(32 * 1024 * 1024)     // 32MB  
+                .targetFileSizeBytes(256 * 1024 * 1024)
+                .minFileSizeBytes(32 * 1024 * 1024)
                 .scheduleOnDataFileCount(20)
                 .partialProgressEnabled(true)
                 .partialProgressMaxCommits(5)
-                .maxRewriteBytes(2L * 1024 * 1024 * 1024) // 2GB
+                .maxRewriteBytes(2L * 1024 * 1024 * 1024)
                 .parallelism(6))
                 
             .append();
@@ -170,6 +170,54 @@ RewriteDataFiles.builder()
     .scheduleOnDataFileCount(500) // After 500 data files
     .scheduleOnDataFileSize(50L * 1024 * 1024 * 1024) // After 50GB
 ```
+
+## IcebergSink with Post-Commit Integration
+
+Apache Iceberg Sink V2 for Flink allows automatic execution of maintenance tasks after data is committed to the table, using the addPostCommitTopology(...) method.
+
+```java
+IcebergSink.forRowData(dataStream)
+    .table(table)
+    .tableLoader(tableLoader)
+    .setAll(properties)
+    .addPostCommitTopology(
+        TableMaintenance.forTable(env, tableLoader, TriggerLockFactory.defaultLockFactory())
+            .rateLimit(Duration.ofMinutes(10))
+            .add(ExpireSnapshots.builder().scheduleOnCommitCount(10))
+            .add(RewriteDataFiles.builder().scheduleOnDataFileCount(50))
+    )
+    .append();
+```
+
+This approach executes maintenance tasks in the same job as the sink, enabling real-time optimization without running a separate job.
+
+## Lock Configuration Example
+
+Iceberg uses a locking mechanism to prevent multiple Flink jobs from performing maintenance on the same table simultaneously. Locks are provided via the TriggerLockFactory and support either JDBC or ZooKeeper backends.
+
+### JDBC Lock Example
+```properties
+flink-maintenance.lock.type=jdbc
+flink-maintenance.lock.lock-id=catalog.db.table
+flink-maintenance.lock.jdbc.uri=jdbc:postgresql://localhost:5432/iceberg
+flink-maintenance.lock.jdbc.user=flink
+flink-maintenance.lock.jdbc.password=flinkpw
+flink-maintenance.lock.jdbc.init-lock-tables=true
+```
+JDBC-based locking is recommended for most production environments.
+
+
+### ZooKeeper Lock Example
+```properties
+flink-maintenance.lock.type=zookeeper
+flink-maintenance.lock.zookeeper.uri=zk://zk1:2181,zk2:2181
+flink-maintenance.lock.zookeeper.session-timeout-ms=60000
+flink-maintenance.lock.zookeeper.connection-timeout-ms=15000
+flink-maintenance.lock.zookeeper.max-retries=3
+flink-maintenance.lock.zookeeper.base-sleep-ms=3000
+```
+Use ZooKeeper-based locks only in high-availability or multi-process coordination environments.
+
 
 ## Best Practices
 
