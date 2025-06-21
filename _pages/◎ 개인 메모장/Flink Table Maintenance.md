@@ -155,20 +155,20 @@ Maintenance tasks can be triggered based on various conditions:
 ### Time-based Scheduling
 ```java
 ExpireSnapshots.builder()
-    .scheduleOnIntervalSecond(3600) // Every hour
+    .scheduleOnIntervalSecond(3600)
 ```
 
 ### Commit-based Scheduling
 ```java
 RewriteDataFiles.builder()
-    .scheduleOnCommitCount(50) // After 50 commits
+    .scheduleOnCommitCount(50)
 ```
 
 ### Data Volume-based Scheduling
 ```java
 RewriteDataFiles.builder()
-    .scheduleOnDataFileCount(500) // After 500 data files
-    .scheduleOnDataFileSize(50L * 1024 * 1024 * 1024) // After 50GB
+    .scheduleOnDataFileCount(500)
+    .scheduleOnDataFileSize(50L * 1024 * 1024 * 1024)
 ```
 
 ## IcebergSink with Post-Commit Integration
@@ -236,33 +236,24 @@ Use ZooKeeper-based locks only in high-availability or multi-process coordinatio
 - Enable `partialProgressEnabled` for large rewrite operations
 - Set reasonable `maxRewriteBytes` limits
 
-## Monitoring
-
-The maintenance jobs expose metrics through Flink's metric system:
-
-- `maintenance.triggered` - Number of triggered maintenance tasks
-- `maintenance.succeededTasks` - Number of successful tasks
-- `maintenance.failedTasks` - Number of failed tasks
-- `maintenance.lastRunDurationMs` - Duration of last execution
-
 ## Troubleshooting
 
 ### Common Issues
 
 **OutOfMemoryError during file deletion:**
 ```java
-.deleteBatchSize(500)  // Reduce batch size
+.deleteBatchSize(500)
 ```
 
 **Lock conflicts:**
 ```java
-.lockCheckDelay(Duration.ofMinutes(1))  // Increase delay
-.rateLimit(Duration.ofMinutes(10))      // Reduce frequency
+.lockCheckDelay(Duration.ofMinutes(1))
+.rateLimit(Duration.ofMinutes(10))
 ```
 
 **Slow rewrite operations:**
 ```java
 .partialProgressEnabled(true)
 .partialProgressMaxCommits(3)
-.maxRewriteBytes(1024 * 1024 * 1024)  // 1GB limit
+.maxRewriteBytes(1024 * 1024 * 1024)
 ```
